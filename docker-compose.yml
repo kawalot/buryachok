@@ -1,0 +1,15 @@
+version: '3'
+services:
+  web:
+    build: ./src
+    command: python ./manage.py runserver  0.0.0.0:8000
+    ports:
+      - 8000:8000
+    volumes:
+      - ./src:/data
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres@db/postgres
+  db:
+    image: postgres
