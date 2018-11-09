@@ -2,12 +2,18 @@ from django.contrib import admin
 from django.urls import path
 from posts import views
 
-from . import views
+from .views import (
+		post_list,
+		post_detail,
+		post_create,
+		post_update,
+		post_delete,
+	)
 
 urlpatterns = [
-    path('', views.post_list),
-    path('create/', views.post_create),
-    path('detail/', views.post_detail),
-    path('update/', views.post_update),
-    path('delete/', views.post_delete),
+    path('', post_list),
+    path('create/', post_create),
+    path('detail/', post_detail),
+    path('update/', post_update),
+    path('delete/', post_delete),
 ]

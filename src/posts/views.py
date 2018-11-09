@@ -14,8 +14,8 @@ def post_detail(request):
 	return HttpResponse("<h1>Hello from Docker</h1>")
 
 def post_list(request):
-
-	return HttpResponse("<h1>Hello from Docker</h1>")
+	return render(request, "index.html", {})
+	#return HttpResponse("<h1>Hello from Docker</h1>")
 
 def post_update(request):
 
