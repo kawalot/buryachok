@@ -3,7 +3,10 @@
 <html>
 
 <body>
-	<h1>Template is working</h1>
+	<h1>{{ title }} is working</h1>
+	{% for object in object_list %}
+		{{ object.title }}: {{ object.content}}</br>
+	{% endfor %}
 </body>
 
 </html>
