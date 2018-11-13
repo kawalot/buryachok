@@ -13,9 +13,9 @@ from .views import (
 app_name = "posts"
 
 urlpatterns = [
-    path('', post_list),
+    path('', post_list, name='list'),
     path('create/', post_create),
     path('<id>/', post_detail, name='detail'),
-    path('update/', post_update),
-    path('delete/', post_delete),
+    path('<id>/edit/', post_update, name='update'),
+    path('<id>/delete/', post_delete),
 ]
