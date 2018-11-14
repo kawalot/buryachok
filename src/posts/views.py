@@ -13,8 +13,6 @@ def post_create(request):
 		instance.save()
 		messages.success(request, "Successfully Created")
 		return HttpResponseRedirect(instance.get_absolute_url())
-	else:
-		messages.error(request, "Not Successfully Created")
 	# if request.method == "POST":
 	# 	print(request.POST)
 	context = {
@@ -35,7 +33,7 @@ def post_list(request):
 		"object_list": queryset,
 		"title": "list"
 	}
-	return render(request, "index.html", context)
+	return render(request, "post_list.html", context)
 	#return HttpResponse("<h1>Hello from Docker</h1>")
 
 def post_update(request, id=None):
