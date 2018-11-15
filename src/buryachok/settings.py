@@ -126,6 +126,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+#STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static-serve")
+STATIC_ROOT = os.path.join(BASE_DIR, "static-serve")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    # '/var/www/static',
+]
 
 try:
     from .local_settings import *

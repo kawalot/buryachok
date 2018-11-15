@@ -1,8 +1,10 @@
+{% load staticfiles %}
 <!--DOCTYPE html -->
 
 <html>
 <head>
-	<title>{% block head_title %} Buryachok blog {% endblock head_title %}</title>
+<title>{% block head_title %} Buryachok blog {% endblock head_title %}</title>
+<link rel='stylesheet' href='{% static "css/base.css" %}' />
 <style>
 	{% block style %} {% endblock style %}
 </style>
