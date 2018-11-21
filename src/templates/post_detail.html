@@ -5,8 +5,8 @@
 {% endblock head_title %}
 
 {% block content %}
-
-<h1>{{ object.title }}</h1>
-	{{ object.content}}
-
+<div class='col-sm-6 col-sm-offset-3'>
+<h1>{{ object.title }} <small>{{ object.timestamp }}</small></h1>
+	{{ object.content|linebreaks}}
+</div>
 {% endblock content %}

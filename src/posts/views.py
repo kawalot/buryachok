@@ -31,7 +31,7 @@ def post_list(request):
 	queryset = Post.objects.all()
 	context = {
 		"object_list": queryset,
-		"title": "list"
+		"title": "List"
 	}
 	return render(request, "post_list.html", context)
 	#return HttpResponse("<h1>Hello from Docker</h1>")
