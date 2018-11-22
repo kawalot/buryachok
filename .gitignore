@@ -69,6 +69,7 @@ coverage.xml
 .media/
 local_settings.py
 static-serve/
+media-serve/
 
 # Flask stuff:
 instance/
@@ -128,3 +129,6 @@ venv.bak/
 
 .idea
 .vscode
+
+# sql
+*.sql
