@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from django.db.models.signals import pre_save
@@ -10,6 +11,7 @@ def upload_location(instance, filename):
     return "%s/%s" %(instance.id, filename)
 
 class Post(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts', default=1)
     title = models.CharField(max_length=120)
     slug = models.SlugField(unique=True)
     image = models.ImageField(
