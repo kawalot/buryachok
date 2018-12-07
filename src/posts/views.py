@@ -12,8 +12,8 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 def post_create(request):
     if not request.user.is_staff or not request.user.is_superuser:
         raise Http404
-    if not request.user.is_authenticated():
-        raise Http404
+    # if not request.user.is_authenticated():
+    #     raise Http404
     form = PostForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         instance = form.save(commit=False)
