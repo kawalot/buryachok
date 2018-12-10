@@ -11,7 +11,8 @@
     {% if object.image %}
     <img src='{{ object.image.url }}' class='img-responsive' />
     {% endif %}
-<h1>{{ object.title }} <small>{% if object.draft %}<b>Draft</b>{% endif %}</small> <span class="badge badge-secondary">{{ object.publish }}</span></h1>
+<h1>{{ object.title }}  <span class="badge badge-secondary">{{ object.publish }}</span></h1>
+{% if object.draft %}<small><b>Draft</b></small>{% endif %}
 {% if user.get_full_name %}
 <p>Author: {{ user.get_full_name }}</p>
 {% endif %}

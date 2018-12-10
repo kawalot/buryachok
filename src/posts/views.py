@@ -43,6 +43,7 @@ def post_detail(request, slug=None):
     return render(request, "post_detail.html", context)
 
 def post_list(request):
+    today = timezone.now().date()
     queryset_list = Post.objects.active()
     if request.user.is_staff or request.user.is_superuser:
         queryset_list = Post.objects.all()
@@ -59,7 +60,8 @@ def post_list(request):
     queryset = paginator.get_page(page)
     context = {
         "object_list": queryset,
-        "title": "List"
+        "title": "Записи:",
+        "today": today,
     }
     return render(request, "post_list.html", context)
     #return HttpResponse("<h1>Hello from Docker</h1>")
