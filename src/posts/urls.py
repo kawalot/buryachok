@@ -13,7 +13,8 @@ from .views import (
 app_name = "posts"
 
 urlpatterns = [
-    path('', post_list, name='list'),
+	path('', post_list, name='list'),
+    path('tag/<slug:tag_slug>/', post_list, name='list_by_tag'),
     path('create/', post_create),
     path('<slug:slug>/', post_detail, name='detail'),
     path('<slug:slug>/edit/', post_update, name='update'),

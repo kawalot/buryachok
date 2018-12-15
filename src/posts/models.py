@@ -4,6 +4,8 @@ from django.urls import reverse
 from django.db.models.signals import pre_save
 from django.utils.text import slugify
 from django.utils import timezone
+
+from taggit.managers import TaggableManager
 # Create your models here.
 
 class PostManager(models.Manager):
@@ -33,6 +35,8 @@ class Post(models.Model):
     publish = models.DateField(auto_now=False, auto_now_add=False)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
+    tags = TaggableManager()
+
 
     objects = PostManager()
 

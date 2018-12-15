@@ -18,10 +18,25 @@
     {% if user.get_full_name %}
     <p>Author: {{ user.get_full_name }}</p>
     {% endif %}
+    
+<!--     {% if object.tags.all %}
+    <p class="tags" >Tags: {{ object.tags.all|join:", " }}</p>
+    {% endif %} -->
+
+    <p class="tags">
+    Tags: 
+    {% for tag in object.tags.all %}
+    <a href="{% url 'posts:list_by_tag' tag.slug %}">
+    {{ tag.name }}</a>
+    {% if not forloop.last %},{% endif %}
+    {% endfor %}
+    </p>
+    
+
 <!--   <img class="card-img-top" src=".../100px180/" alt="Card image cap">-->  
 	<div class="card-body">
     <h3 class="card-title"><a href='{{ object.get_absolute_url }}'>{{ object.title }}</a><small> <span class="badge badge-secondary">{{ object.publish }}</span></small></h3>
-    {% if object.draft %}<b>Черновик</b>{% endif %}{% if object.publish > today %}<b> в будущее</b>{% endif %}
+    {% if object.draft %}<b>Черновик</b>{% endif %}{% if object.publish > today %}<b> в будущем</b>{% endif %}
     <p class="card-text">{{ object.content|linebreaks|truncatechars:120 }}</p>
     <a href="{{ object.get_absolute_url }}" class="btn btn-primary">View</a>
   	</div>

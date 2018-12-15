@@ -9,6 +9,8 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.utils import timezone
 from django.db.models import Q
 
+from taggit.models import Tag
+
 # Create your views here.
 
 def post_create(request):
@@ -21,6 +23,7 @@ def post_create(request):
         instance = form.save(commit=False)
         instance.user = request.user
         instance.save()
+        form.save_m2m()
         messages.success(request, "Successfully Created")
         return HttpResponseRedirect(instance.get_absolute_url())
     # if request.method == "POST":
@@ -42,7 +45,7 @@ def post_detail(request, slug=None):
     }
     return render(request, "post_detail.html", context)
 
-def post_list(request):
+def post_list(request, tag_slug=None):
     today = timezone.now().date()
     queryset_list = Post.objects.active()
     if request.user.is_staff or request.user.is_superuser:
@@ -55,6 +58,12 @@ def post_list(request):
             Q(author__first_name__icontains=query) |
             Q(author__last_name__icontains=query)
             ).distinct()
+
+    tag = None
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        queryset_list = queryset_list.filter(tags__in=[tag])
+
     paginator = Paginator(queryset_list, 10)
     page = request.GET.get('page')
     queryset = paginator.get_page(page)
@@ -62,6 +71,7 @@ def post_list(request):
         "object_list": queryset,
         "title": "Записи:",
         "today": today,
+        'tag': tag,
     }
     return render(request, "post_list.html", context)
     #return HttpResponse("<h1>Hello from Docker</h1>")
@@ -74,6 +84,7 @@ def post_update(request, slug=None):
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
+        form.save_m2m()
         messages.success(request, "Saved")
         return HttpResponseRedirect(instance.get_absolute_url())
     context = {
