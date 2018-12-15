@@ -2,51 +2,64 @@
 
 {% block content %}
 
-<div class='col-sm-8 col-sm-offset-3'>
-<h1>{{ title }}</h1>
-<form method="GET" action="">
-    <input type="text" name="q" placeholder="Search" value="{{ request.GET.q }}" />
-    <input type="submit" value="Search"/>
-</form>
-{% for object in object_list %}
 <div class="row">
-<!-- <div class="col-sm-12"> -->
-<div class="card" style="width: 58rem;">
-    {% if object.image %}
-	<img class="card-img-top" src='{{ object.image.url }}' alt="{{ object.title }}" />
+    <div class="col-sm-3">
+        <h2>{{ title }}</h2>
+        <h5>Photo of me:</h5>
+        <div class="fakeimg">Fake Image</div>
+        <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+        <h3>Some Links</h3>
+        <p>Lorem ipsum dolor sit ame.</p>
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Active</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+        </ul>
+        <hr class="d-sm-none">
+    </div>
+
+<div class="col-sm-9">
+{% for object in object_list %}
+
+    <h2>{{ object.title }}</h2>
+    <span class="badge badge-info">{{ object.publish }}</span>{% if user.get_full_name %}
+    <p>by {{ user.get_full_name }}</p>
     {% endif %}
-    {% if user.get_full_name %}
-    <p>Author: {{ user.get_full_name }}</p>
-    {% endif %}
-    
-<!--     {% if object.tags.all %}
-    <p class="tags" >Tags: {{ object.tags.all|join:", " }}</p>
-    {% endif %} -->
 
     <p class="tags">
-    Tags: 
     {% for tag in object.tags.all %}
-    <a href="{% url 'posts:list_by_tag' tag.slug %}">
-    {{ tag.name }}</a>
+
+    <a href="{% url 'posts:list_by_tag' tag.slug %}">{{ tag.name }}</a>
     <!-- {% if not forloop.last %},{% endif %} -->
     {% endfor %}
     </p>
-    
 
-<!--   <img class="card-img-top" src=".../100px180/" alt="Card image cap">-->  
-	<div class="card-body">
-    <h3 class="card-title"><a href='{{ object.get_absolute_url }}'>{{ object.title }}</a><small> <span class="badge badge-secondary">{{ object.publish }}</span></small></h3>
+    {% if object.image %}
+        <div class="fakeimg">Fake Image
+        <img class="card-img-top" src='{{ object.image.url }}' alt="{{ object.title }}" />
+    </div>
+    {% endif %}
     {% if object.draft %}<b>Черновик</b>{% endif %}{% if object.publish > today %}<b> в будущем</b>{% endif %}
-    <p class="card-text">{{ object.content|striptags|slice:':300' }}..</p>
-    <a href="{{ object.get_absolute_url }}" class="btn btn-primary">View</a>
-  	</div>
-</div>
-</div>
-<hr/>
-<!-- </div> -->
-</br>
-{% endfor %}
 
+    <p>{{ object.content|striptags|slice:':300' }}..</p>
+    <a href="{{ object.get_absolute_url }}" class="btn btn-primary">View</a>
+
+
+
+<hr/>
+
+{% endfor %}
+</div>
+</div>
 <div class="pagination">
     <span class="step-links">
         {% if object_list.has_previous %}
