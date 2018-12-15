@@ -6,8 +6,8 @@
 	<form method="POST" action="" enctype="multipart/form-data">
 		{% csrf_token %}
 		{{ form.as_p }}
-		
-		<input type="submit" class="btn btn-primary" value="Create Post" />
+		{{ form.media }}
+		<input type="submit" class="btn btn-primary" value="Save" />
 	</form>
 </div>
 {% endblock content %}

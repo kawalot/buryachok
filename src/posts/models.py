@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.db.models.signals import pre_save
 from django.utils.text import slugify
 from django.utils import timezone
+from ckeditor_uploader.fields import RichTextUploadingField
 
 from taggit.managers import TaggableManager
 # Create your models here.
@@ -30,12 +31,12 @@ class Post(models.Model):
         )
     height_field = models.IntegerField(default=0)
     width_field = models.IntegerField(default=0)
-    content = models.TextField()
+    content = RichTextUploadingField(blank=True, null=True)
     draft = models.BooleanField(default=False)
     publish = models.DateField(auto_now=False, auto_now_add=False)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
 
 
     objects = PostManager()

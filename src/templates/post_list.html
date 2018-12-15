@@ -28,7 +28,7 @@
     {% for tag in object.tags.all %}
     <a href="{% url 'posts:list_by_tag' tag.slug %}">
     {{ tag.name }}</a>
-    {% if not forloop.last %},{% endif %}
+    <!-- {% if not forloop.last %},{% endif %} -->
     {% endfor %}
     </p>
     
@@ -37,7 +37,7 @@
 	<div class="card-body">
     <h3 class="card-title"><a href='{{ object.get_absolute_url }}'>{{ object.title }}</a><small> <span class="badge badge-secondary">{{ object.publish }}</span></small></h3>
     {% if object.draft %}<b>Черновик</b>{% endif %}{% if object.publish > today %}<b> в будущем</b>{% endif %}
-    <p class="card-text">{{ object.content|linebreaks|truncatechars:120 }}</p>
+    <p class="card-text">{{ object.content|striptags|slice:':300' }}..</p>
     <a href="{{ object.get_absolute_url }}" class="btn btn-primary">View</a>
   	</div>
 </div>
