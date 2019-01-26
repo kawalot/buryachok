@@ -1,7 +1,8 @@
-Django==2.1.2
+django>=2.1.5
 pytz==2018.5
 dj_database_url
-psycopg2
+psycopg2-binary
 Pillow
 django-taggit
 django-ckeditor
+django-debug-toolbar
