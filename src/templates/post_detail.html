@@ -7,11 +7,12 @@
 {% endblock head_title %}
 
 {% block content %}
-<div class='col-sm-6 col-sm-offset-3'>
+<div class="row">
+<div class='col-sm-8 offset-sm-2'>
     {% if object.image %}
     <img src='{{ object.image.url }}' class='img-responsive' />
     {% endif %}
-<h1>{{ object.title }}  <span class="badge badge-info">{{ object.publish }}</span></h1>
+<h1>{{ object.title }} </h1> <span class="badge badge-info"><i class="far fa-clock"></i> {{ object.publish }}</span>
 {% if object.draft %}<small><b>Черновик</b></small>{% endif %}
 {% if user.get_full_name %}
 <p>Author: {{ user.get_full_name }}</p>
@@ -27,5 +28,6 @@
 <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">Facebook</a>
 <a href="https://twitter.com/home?status={{ object.content|truncatechars:80|urlify }}%20{{ request.build_absolute_uri }}">Twitter</a>
 	{{ object.content|safe|linebreaks}}
+</div>
 </div>
 {% endblock content %}

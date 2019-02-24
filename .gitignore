@@ -8,7 +8,6 @@
 [Ll]ocal
 [Ss]cripts
 pyvenv.cfg
-.venv
 pip-selfcheck.json
 
 # Byte-compiled / optimized / DLL files
@@ -66,7 +65,8 @@ coverage.xml
 # Django stuff:
 *.log
 .static_storage/
-.media/
+media/
+static/
 local_settings.py
 static-serve/
 media-serve/
@@ -132,3 +132,9 @@ venv.bak/
 
 # sql
 *.sql
+*.sqlite3
+pgdata/
+
+#prod
+*.prod*
+/config
