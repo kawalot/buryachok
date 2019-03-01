@@ -32,7 +32,7 @@
     {% if object.draft %}<b>Черновик</b>{% endif %}{% if object.publish > today %}<b> в будущем</b>{% endif %}
 
     <p>{{ object.content|striptags|slice:':300' }}..</p>
-    <a href="{{ object.get_absolute_url }}" class="btn btn-primary btn-rounded">Read More</a>
+    <a href="{{ object.get_absolute_url }}" class="btn btn-primary">Read More</a>
 
 
 
