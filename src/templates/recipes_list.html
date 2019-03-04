@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-8 offset-sm-2">
+        </br>      
+        <h3 align="center">Рецепты: {{ slug }}</h3>
+        </br>
+        {% for obj in object_list %}
+
+            <h2>{{ obj.title }}</h2>
+
+            {% if obj.image %}
+                <div class="fakeimg">
+                <img class="card-img-top" src='{{ obj.image.url }}' alt="{{ obj.title }}" />
+            </div>
+            {% endif %}
+
+            <p>{{ obj.content|striptags|slice:':300' }}..</p>   
+            <a href="{{ obj.get_absolute_url }}" class="btn btn-primary">Read More</a>
+            <hr>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

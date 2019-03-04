@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head_title %} 
+{{ object.title }} | {{ block.super }} 
+{% endblock head_title %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-8 offset-sm-2">
+        </br>      
+        <h3 align="center">{{ object.title }}</h3>
+        <span class="badge"><i class="far fa-clock"></i> {{ object.publish }}</span>
+        </br>
+        {% if object.image %}
+            <img src='{{ object.image.url }}' class='img-responsive' width="300px" height="200px"  alt="{{ object.title }}" align="right" style="margin: 5px 10px;"/>
+        {% endif %}
+        {{ object.content|safe|linebreaks}}
+
+    </div>
+</div>
+
+{% endblock %}

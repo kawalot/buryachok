@@ -18,12 +18,17 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from posts import views
+from recipes import views as recipes_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/', include("posts.urls", namespace='posts')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('', views.home, name='home_page')
+    path('', views.home, name='home_page'),
+    path('about/', views.about, name='about_page'),
+    path('contacts/', views.contacts, name='contacts_page'),
+    path('recipes/', include("recipes.urls", namespace='resipes')),
+    path('category/<slug:slug_category>/', recipes_views.recipes_list, name='recipes_list_by_category'),    
 ]
 
 if settings.DEBUG:

@@ -113,3 +113,9 @@ def post_delete(request, slug=None):
 
 def home(request):
     return render(request, "home.html")
+
+def about(request):
+    return render(request, "about.html")
+
+def contacts(request):
+    return render(request, "contacts.html")

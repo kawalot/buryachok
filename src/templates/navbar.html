@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-sm-2"></div>
     <div class="col-sm-8 text-center">
-      <a href="{% url 'home_page' %}"><img src='{% static "logo13.png" %}' class="logo"> </a>
+      <a href="{% url 'home_page' %}"><img src='{% static "logo.png" %}' class="logo"> </a>
     </div>
     <div class="col-sm-2 text-center">
       <div class="links">
@@ -31,27 +31,30 @@
     <div class="navbar-collapse collapse justify-content-between align-items-center w-100" id="collapsingNavbar2">
         <ul class="navbar-nav mx-auto text-center">
             <li class="nav-item ">
-              <a class="nav-link" href="#">&nbsp;ABOUT&nbsp;</a>
+              <a class="nav-link" href="{% url 'about_page' %}">&nbsp;О САЙТЕ&nbsp;</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'posts:list' %}">&nbsp;BLOG&nbsp;</a>
+              <a class="nav-link" href="{% url 'posts:list' %}">&nbsp;БЛОГ&nbsp;</a>
             </li>
 <!--             <li class="nav-item">
               <a class="nav-link" href="">&nbsp;RECIPIES&nbsp;</a>
             </li> -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                &nbsp;RECIPIES
+                &nbsp;РЕЦЕПТЫ
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Lasagna</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="{% url 'recipes_list_by_category' 'breakfast' %}">ЗАВТРАКИ</a>
+                <a class="dropdown-item" href="#">СУПЫ</a>
+                <a class="dropdown-item" href="#">ЗАКУСКИ & САЛАТЫ</a>
+                <a class="dropdown-item" href="{% url 'recipes_list_by_category' 'main-entree' %}">ОСНОВНЫЕ БЛЮДА</a>
+                <a class="dropdown-item" href="#">ДЕСЕРТЫ</a>
+<!--                 <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a> -->
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">&nbsp;CONTACTS&nbsp;</a> 
+              <a class="nav-link" href="{% url 'contacts_page' %}">&nbsp;КОНТАКТЫ&nbsp;</a> 
             </li>
         </ul>
         <!-- <ul class="nav navbar-nav flex-row justify-content-center flex-nowrap"> -->
