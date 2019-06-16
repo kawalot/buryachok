@@ -49,7 +49,7 @@ CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
         'height': 600,
-        'width': 900,
+        'width': 700,
     },
 }
 
